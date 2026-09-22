@@ -6,9 +6,9 @@
 /* ---------- 設計 token ---------- */
 :root {
   --color-white: #fff;
-  --color-primary: #409EFF;
-  --color-primary-action: #409EFF;
-  --color-primary-hover: #409EFF;
+  --color-primary: #2563eb;
+  --color-primary-action: #2563eb;
+  --color-primary-hover: #2563eb;
   --color-primary-soft: #ecf5ff;
 
   --color-text: #1a2236;
