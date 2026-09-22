@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>報名表單 | 2026 科技論壇 AI Agent 新賽局</title>
+  <meta name="description" content="填寫 2026 科技論壇 AI Agent 新賽局活動報名資料並閱讀個資使用聲明。">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/site.js" defer></script>
+</head>
+<body>
+<div class="shell">
+
+<div class="banner"><div class="banner__inner"><img src="assets/banner.jpg" alt="2026 科技論壇 AI Agent 新賽局" width="1024" height="358"></div></div>
+<main class="container container--narrow shell__content">
+<header class="hero"><h1>活動報名表單</h1></header>
+<!-- 欄位刻意不設 name：送出時只做瀏覽器驗證並開啟「等待審核中」彈窗，個資不會出現在網址列 -->
+<form class="form" method="get" action="payment.html" data-dialog-on-submit="pending">
+  <div><label for="attendee-name" class="label field__label">姓名 <span class="required-mark" aria-hidden="true">*</span></label><input id="attendee-name" class="control" type="text" placeholder="請輸入姓名" autocomplete="name" required></div>
+  <div><label for="attendee-phone" class="label field__label">電話 <span class="required-mark" aria-hidden="true">*</span></label><input id="attendee-phone" class="control" type="tel" placeholder="建議輸入手機號碼以便查詢報名結果" autocomplete="tel" required></div>
+  <div><label for="attendee-email" class="label field__label">電子信箱 <span class="required-mark" aria-hidden="true">*</span></label><input id="attendee-email" class="control" type="email" placeholder="請輸入電子信箱" autocomplete="email" required></div>
+  <div><label for="attendee-company-title" class="label field__label">服務單位 / 職稱</label><input id="attendee-company-title" class="control" type="text" placeholder="例如：未來科技股份有限公司 / 產品總監" autocomplete="organization"></div>
+  <div><label for="attendee-diet" class="label field__label">飲食習慣</label><select id="attendee-diet" class="control"><option>葷食 (標準)</option><option>素食</option><option>清真飲食</option></select></div>
+  <section class="privacy">
+    <h2>個資使用聲明</h2>
+    <div class="privacy__box" tabindex="0" role="region" aria-label="個資使用聲明全文">本活動所蒐集之個人資料（姓名、電話、電子郵件等），僅限於本次大會活動報名驗證、入場憑證發放、行前通知與緊急聯絡之目的使用。我們將嚴格維護您的個人資料安全，未經同意不會提供給第三人。</div>
+    <label class="check"><input id="attendee-agreed" type="checkbox" required><span>我已閱讀並同意上述個人資料蒐集與使用聲明 <span class="required-mark" aria-hidden="true">*</span></span></label>
+  </section>
+  <button type="submit" class="btn btn--primary btn--block">送出</button>
+</form>
+<dialog class="modal" id="pending" aria-labelledby="pending-title">
+  <div class="modal__dialog">
+    <header class="modal__header"><p class="modal__title" id="pending-title">等待審核中</p><button type="button" class="modal__close" data-dialog-close aria-label="關閉"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 18L18 6M6 6l12 12"/></svg></button></header>
+    <div class="modal__body"><p>主辦單位審核中，請耐心等候，我們會盡快將審核結果寄到您填寫的信箱。若有任何問題請與主辦單位聯絡。</p></div>
+    <footer class="modal__footer"><a class="btn btn--primary" href="payment.html">確認</a></footer>
+  </div>
+</dialog>
+</main>
+<footer class="footer">聯合報系 著作權所有 © udn.com All Rights Reserved.</footer>
+</div>
+</body>
+</html>
