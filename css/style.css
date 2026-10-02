@@ -215,6 +215,17 @@ svg.icon { flex-shrink: 0; }
 .btn--block { display: flex; width: 100%; }
 .btn--icon { width: var(--control-height); padding: 0; }
 
+.calendar-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  flex-shrink: 0;
+}
+.calendar-link .icon { display: block; width: 28px; height: 28px; }
+
 /* ---------- 表單控制項 ---------- */
 .control {
   width: 100%;
@@ -531,10 +542,11 @@ select.control {
 }
 
 .footer {
-  padding-block: var(--space-6);
+  padding: var(--space-6) var(--space-4);
   background: var(--color-dark);
   color: var(--color-on-dark-muted);
-  font-size: var(--fs-small);
+  font-size: 12px;
+  line-height: 1.6;
   text-align: center;
 }
 
