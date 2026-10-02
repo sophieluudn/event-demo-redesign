@@ -430,11 +430,12 @@ select.control {
   height: var(--header-height);
 }
 .navbar__links { display: none; }
+.navbar__links a { white-space: nowrap; flex-shrink: 0; }
 .navbar__links a,
 .navbar__panel a { font-weight: 500; transition: color 0.15s; }
 .navbar__links a:hover { color: var(--color-primary-action); }
 
-/* 手機選單 */
+/* 收合導覽（小於 1024px，含平板與窄視窗） */
 .navbar__menu {
   display: inline-flex;
   align-items: center;
@@ -475,7 +476,7 @@ select.control {
 }
 
 @media (min-width: 1024px) {
-  .navbar__links { display: flex; align-items: center; gap: var(--space-10); }
+  .navbar__links { display: flex; align-items: center; gap: 24px; }
   .navbar__menu,
   .navbar__panel-wrap { display: none; }
   .navbar__actions { gap: var(--space-3); }
