@@ -68,22 +68,26 @@ document.querySelectorAll('[data-send-otp]').forEach((button) => {
 });
 
 document.querySelectorAll('[data-nav-toggle]').forEach((button) => {
-  button.addEventListener('click', () => {
-    const panel = document.getElementById(button.getAttribute('aria-controls'));
-    if (!panel) return;
+  const panel = document.getElementById(button.getAttribute('aria-controls'));
+  if (!panel) return;
 
-    const isOpen = button.getAttribute('aria-expanded') === 'true';
-    button.setAttribute('aria-expanded', String(!isOpen));
-    button.setAttribute('aria-label', isOpen ? '開啟選單' : '關閉選單');
-    panel.hidden = isOpen;
+  const setOpen = (isOpen) => {
+    button.setAttribute('aria-expanded', String(isOpen));
+    button.setAttribute('aria-label', isOpen ? '關閉選單' : '開啟選單');
+    panel.hidden = !isOpen;
+  };
+
+  button.addEventListener('click', () => {
+    setOpen(button.getAttribute('aria-expanded') !== 'true');
   });
 
-  const panel = document.getElementById(button.getAttribute('aria-controls'));
-  panel?.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', () => {
-      button.setAttribute('aria-expanded', 'false');
-      button.setAttribute('aria-label', '開啟選單');
-      panel.hidden = true;
-    });
+  panel.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => setOpen(false));
+  });
+
+  // 與 CSS 導覽斷點一致；回到桌面時清除收合選單狀態。
+  const desktop = window.matchMedia('(min-width: 1024px)');
+  desktop.addEventListener('change', (event) => {
+    if (event.matches) setOpen(false);
   });
 });
