@@ -1,5 +1,51 @@
 'use strict';
 
+const sectionLinks = [...document.querySelectorAll('.navbar__links a[href^="#"], .navbar__panel > a[href^="#"]')];
+const navSections = [...new Set(sectionLinks.map((link) => document.getElementById(link.hash.slice(1))).filter(Boolean))];
+
+if (navSections.length) {
+  const header = document.querySelector('.navbar');
+  const setCurrentSection = (id) => {
+    sectionLinks.forEach((link) => {
+      if (link.hash === `#${id}`) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    });
+  };
+
+  const updateCurrentSection = () => {
+    // 使用與錨點定位相同的頂部留白；展開的選單不計入 header 高度。
+    const offset = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || header.offsetHeight;
+    let current = null;
+    navSections.forEach((section) => {
+      if (section.getBoundingClientRect().top <= offset + 1) current = section;
+    });
+    // 最後一節可能太短，無法捲到頂部定位線。
+    if (current && window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 1) {
+      current = navSections[navSections.length - 1];
+    }
+    setCurrentSection(current?.id);
+  };
+
+  sectionLinks.forEach((link) => {
+    link.addEventListener('click', () => setCurrentSection(link.hash.slice(1)));
+  });
+
+  let updatePending = false;
+  const scheduleUpdate = () => {
+    if (updatePending) return;
+    updatePending = true;
+    requestAnimationFrame(() => {
+      updatePending = false;
+      updateCurrentSection();
+    });
+  };
+  window.addEventListener('scroll', scheduleUpdate, { passive: true });
+  window.addEventListener('resize', scheduleUpdate);
+  window.addEventListener('hashchange', scheduleUpdate);
+  window.addEventListener('load', scheduleUpdate);
+  updateCurrentSection();
+}
+
 function openDialog(dialogId) {
   const dialog = document.getElementById(dialogId);
   if (!(dialog instanceof HTMLDialogElement)) return;

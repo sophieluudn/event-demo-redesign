@@ -432,8 +432,26 @@ select.control {
 .navbar__links { display: none; }
 .navbar__links a { white-space: nowrap; flex-shrink: 0; }
 .navbar__links a,
-.navbar__panel a { font-weight: 500; transition: color 0.15s; }
+.navbar__panel a { font-weight: 400; transition: color 0.15s; }
 .navbar__links a:hover { color: var(--color-primary-action); }
+
+/* 目前章節：標記不占版面空間，避免導覽切換時跳動。 */
+.navbar__links a,
+.navbar__panel > a { position: relative; width: fit-content; }
+.navbar__links a[aria-current="location"],
+.navbar__panel > a[aria-current="location"] { color: var(--color-primary-action); }
+.navbar__links a[aria-current="location"]::after,
+.navbar__panel > a[aria-current="location"]::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -5px;
+  width: 24px;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+  transform: translateX(-50%);
+}
 
 /* 收合導覽（小於 1024px，含平板與窄視窗） */
 .navbar__menu {
@@ -476,7 +494,7 @@ select.control {
 }
 
 @media (min-width: 1024px) {
-  .navbar__links { display: flex; align-items: center; gap: 24px; }
+  .navbar__links { display: flex; align-items: center; gap: 32px; }
   .navbar__menu,
   .navbar__panel-wrap { display: none; }
   .navbar__actions { gap: var(--space-3); }
