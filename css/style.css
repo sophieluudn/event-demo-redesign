@@ -796,6 +796,32 @@ select.control {
 }
 
 /* ---------- 付款 ---------- */
+.payment-greeting {
+  max-width: 100%;
+  color: var(--color-text-muted);
+  overflow-wrap: anywhere;
+}
+.payment-methods {
+  margin-top: var(--space-6);
+  color: var(--color-text-muted);
+  font-size: var(--fs-small);
+  text-align: center;
+}
+.payment-methods__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: var(--space-2);
+}
+.payment-methods__list li {
+  padding: 2px var(--space-2);
+  border-radius: 999px;
+  background: var(--color-primary-soft);
+  color: var(--color-primary-action);
+  font-size: var(--fs-control);
+  line-height: var(--lh-label);
+}
 .block { margin-bottom: var(--space-8); }
 .payment-event {
   margin-bottom: var(--space-3);

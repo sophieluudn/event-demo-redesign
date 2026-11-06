@@ -90,9 +90,27 @@ document.querySelectorAll('[data-dialog-on-submit]').forEach((form) => {
     if (!form.reportValidity()) return;
 
     event.preventDefault();
+    const attendeeName = form.querySelector('#attendee-name');
+    if (attendeeName instanceof HTMLInputElement) {
+      try {
+        sessionStorage.setItem('registration-attendee-name', attendeeName.value.trim());
+      } catch {
+        // 儲存不可用時仍保留原有報名流程。
+      }
+    }
     openDialog(form.dataset.dialogOnSubmit);
   });
 });
+
+const paymentGreeting = document.querySelector('[data-payment-greeting]');
+if (paymentGreeting) {
+  try {
+    const attendeeName = sessionStorage.getItem('registration-attendee-name')?.trim();
+    if (attendeeName) paymentGreeting.textContent = `${attendeeName}，請選擇付款商品`;
+  } catch {
+    // 直接進入付款頁或儲存不可用時，顯示通用提示。
+  }
+}
 
 document.querySelectorAll('[data-send-otp]').forEach((button) => {
   button.addEventListener('click', () => {
