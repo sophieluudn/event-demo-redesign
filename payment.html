@@ -18,7 +18,7 @@
 <div class="banner"><div class="banner__inner"><img src="assets/banner.jpg" alt="2026 科技論壇 AI Agent 新賽局" width="1024" height="358"></div></div>
 <main class="container container--narrow shell__content">
 <header class="hero"><h1>選擇付款項目</h1><p class="payment-greeting" data-payment-greeting>請選擇付款商品</p></header>
-<form method="get" action="success.html">
+<form id="payment-form" method="get" action="success.html" data-payment-form>
 <section class="block"><h2 id="payment-heading">付款項目</h2>
   <p class="payment-event">2026 科技論壇 AI Agent 新賽局</p>
   <div class="card">
@@ -48,12 +48,12 @@
 <section class="payment-methods" aria-labelledby="payment-methods-heading">
   <p id="payment-methods-heading">支援付款方式</p>
   <ul class="payment-methods__list">
-    <li>信用卡</li>
-    <li>Apple Pay</li>
-    <li>Google Pay</li>
-    <li>LINE Pay</li>
-    <li>超商代碼</li>
-    <li>ATM 轉帳</li>
+    <li><label class="payment-method"><input type="radio" name="payment-method" value="credit-card" form="payment-form" checked><span>信用卡</span></label></li>
+    <li><label class="payment-method"><input type="radio" name="payment-method" value="apple-pay" form="payment-form"><span>Apple Pay</span></label></li>
+    <li><label class="payment-method"><input type="radio" name="payment-method" value="google-pay" form="payment-form"><span>Google Pay</span></label></li>
+    <li><label class="payment-method"><input type="radio" name="payment-method" value="line-pay" form="payment-form"><span>LINE Pay</span></label></li>
+    <li><label class="payment-method"><input type="radio" name="payment-method" value="convenience-store" form="payment-form"><span>超商代碼</span></label></li>
+    <li><label class="payment-method"><input type="radio" name="payment-method" value="atm" form="payment-form"><span>ATM 轉帳</span></label></li>
   </ul>
 </section>
 </main>

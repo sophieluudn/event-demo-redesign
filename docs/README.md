@@ -20,6 +20,7 @@ index.html               活動首頁
 register.html            報名入口
 form.html                報名表單
 payment.html             付款項目
+payment-info.html        超商代碼／ATM 繳費資訊
 success.html             報名成功／付款結果
 query.html               報名查詢與 OTP
 query-result.html        查詢結果與電子憑證

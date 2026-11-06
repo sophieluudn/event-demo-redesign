@@ -112,6 +112,27 @@ if (paymentGreeting) {
   }
 }
 
+// Demo 僅切換畫面；正式付款結果及繳款資料須由既有金流回應提供。
+const paymentForm = document.querySelector('[data-payment-form]');
+if (paymentForm) {
+  paymentForm.addEventListener('submit', () => {
+    const method = new FormData(paymentForm).get('payment-method');
+    paymentForm.action = ['convenience-store', 'atm'].includes(method)
+      ? 'payment-info.html' : 'success.html';
+  });
+}
+
+const paymentInfo = document.querySelector('[data-payment-info]');
+if (paymentInfo) {
+  const method = new URLSearchParams(window.location.search).get('payment-method');
+  paymentInfo.querySelectorAll('[data-payment-details]').forEach((row) => {
+    row.hidden = row.dataset.paymentDetails !== method;
+  });
+  const isOfflinePayment = ['convenience-store', 'atm'].includes(method);
+  paymentInfo.querySelector('[data-payment-info-missing]').hidden = isOfflinePayment;
+  paymentInfo.querySelector('[data-payment-info-content]').hidden = !isOfflinePayment;
+}
+
 document.querySelectorAll('[data-send-otp]').forEach((button) => {
   button.addEventListener('click', () => {
     const form = button.closest('form');

@@ -814,14 +814,41 @@ select.control {
   gap: 8px;
   margin-top: var(--space-2);
 }
-.payment-methods__list li {
+.payment-method {
+  position: relative;
+  display: inline-flex;
+  cursor: pointer;
+}
+.payment-method input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+.payment-method span {
+  display: block;
   padding: 2px var(--space-2);
+  border: 1px solid transparent;
   border-radius: 999px;
   background: var(--color-primary-soft);
   color: var(--color-primary-action);
   font-size: var(--fs-control);
   line-height: var(--lh-label);
 }
+.payment-method:hover span { border-color: var(--color-primary-action); }
+.payment-method input:checked + span {
+  background: var(--color-primary-action);
+  color: var(--color-white);
+  border-color: var(--color-primary-action);
+}
+.payment-method input:focus-visible + span {
+  outline: 2px solid var(--color-primary-action);
+  outline-offset: 3px;
+}
+.payment-info__deadline { color: var(--color-danger); }
+.payment-info__notice { margin-block: var(--space-4) var(--space-6); color: var(--color-text-muted); }
+.payment-info__demo { margin-top: var(--space-4); color: var(--color-text-muted); font-size: var(--fs-small); }
+.payment-info [hidden] { display: none; }
 .block { margin-bottom: var(--space-8); }
 .payment-event {
   margin-bottom: var(--space-3);
