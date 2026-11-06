@@ -812,6 +812,18 @@ select.control {
 }
 .option + .option { border-top: 1px solid var(--color-border); }
 .option:hover { background: var(--color-surface); }
+.option__content { min-width: 0; }
+.option__description {
+  display: block;
+  margin-top: var(--space-2);
+  margin-left: 26px;
+  color: var(--color-text-muted);
+  font-size: var(--fs-control);
+  line-height: 1.6;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+.option__description:empty { display: none; }
 .option__choice { display: flex; align-items: center; gap: 8px; }
 .option__choice input {
   margin: 0;
@@ -827,7 +839,7 @@ select.control {
   transition: transform 0.1s;
 }
 .option__choice input:checked::before { transform: scale(1); }
-.option__price { color: var(--color-primary-action); font-weight: 500; }
+.option__price { color: var(--color-primary-action); font-weight: 500; flex-shrink: 0; }
 .actions { display: flex; flex-direction: column; gap: var(--space-3); }
 @media (min-width: 640px) {
   .option { flex-direction: row; align-items: center; justify-content: space-between; }

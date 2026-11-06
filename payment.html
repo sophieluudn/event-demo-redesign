@@ -20,7 +20,24 @@
 <form method="get" action="success.html">
 <section class="block"><h2 id="payment-heading">付款項目</h2>
   <p class="payment-event">2026 科技論壇 AI Agent 新賽局</p>
-  <div class="card"><div role="radiogroup" aria-labelledby="payment-heading"><label class="option"><span class="option__choice"><input type="radio" name="payment-option" value="0" checked><span>2026-10-14 上午場 (09:00)</span></span><span class="option__price">NT$ 250</span></label><label class="option"><span class="option__choice"><input type="radio" name="payment-option" value="1"><span>2026-10-14 下午場 (14:00)</span></span><span class="option__price">NT$ 250</span></label></div></div>
+  <div class="card">
+    <div role="radiogroup" aria-labelledby="payment-heading">
+      <label class="option">
+        <span class="option__content">
+          <span class="option__choice"><input type="radio" name="payment-option" value="0" aria-describedby="morning-description" checked><span>2026-10-14 上午場 (09:00)</span></span>
+          <!-- 商品說明示意；正式串接時使用新增／編輯商品所儲存的說明，空白時不輸出此元素及 aria-describedby。 -->
+          <span class="option__description" id="morning-description">2026 科技論壇 AI Agent 新賽局上午場。</span>
+        </span>
+        <span class="option__price">NT$ 250</span>
+      </label>
+      <label class="option">
+        <span class="option__content">
+          <span class="option__choice"><input type="radio" name="payment-option" value="1"><span>2026-10-14 下午場 (14:00)</span></span>
+        </span>
+        <span class="option__price">NT$ 250</span>
+      </label>
+    </div>
+  </div>
 </section>
 <div class="actions">
   <button type="submit" class="btn btn--primary btn--block">確認付款</button>
