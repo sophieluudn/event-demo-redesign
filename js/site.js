@@ -1,5 +1,44 @@
 'use strict';
 
+// Demo 僅展示狀態；正式版由後端提供名額與報名資格並驗證提交。
+const eventStatus = document.querySelector('[data-event-status]');
+if (eventStatus) {
+  const start = Date.parse('2026-09-01T09:00:00+08:00');
+  const end = Date.parse('2026-10-13T12:00:00+08:00');
+  const eventStart = Date.parse('2026-10-14T09:00:00+08:00');
+  const eventEnd = Date.parse('2026-10-14T16:30:00+08:00');
+  const select = document.querySelector('[data-status-scenario]');
+  const action = document.querySelector('[data-registration-action]');
+  const date = document.querySelector('.info-list__secondary dd');
+  const originalDate = date.textContent;
+  const samples = { upcoming: start - 1, open: start, full: start, closed: end, live: eventStart, overlap: eventStart, ended: eventEnd };
+  function render() {
+    const scenario = select.value;
+    const now = scenario === 'auto' ? Date.now() : samples[scenario];
+    const deadline = scenario === 'overlap' ? Date.parse('2026-10-14T12:00:00+08:00') : end;
+    const ended = now >= eventEnd;
+    const upcoming = now < start;
+    const full = scenario === 'full';
+    const open = !ended && !full && !upcoming && now < deadline;
+    eventStatus.textContent = '活動已結束，感謝您的熱情參與！';
+    eventStatus.hidden = !ended;
+    action.textContent = ended ? '報名截止' : upcoming ? '尚未開始'
+      : now >= deadline ? '報名截止' : full ? '報名額滿' : '立即報名';
+    if (ended) action.setAttribute('aria-describedby', 'event-status-message');
+    else action.removeAttribute('aria-describedby');
+    action.setAttribute('aria-disabled', String(!open));
+    if (open) action.setAttribute('href', 'register.html');
+    else action.removeAttribute('href');
+    date.textContent = scenario === 'overlap' ? '2026-09-01 09:00 ～ 2026-10-14 12:00' : originalDate;
+  }
+  action.addEventListener('click', (event) => {
+    render();
+    if (action.getAttribute('aria-disabled') === 'true') event.preventDefault();
+  });
+  select.addEventListener('change', render);
+  window.setInterval(render, 30000);
+  render();
+}
 const sectionLinks = [...document.querySelectorAll('.navbar__links a[href^="#"], .navbar__panel > a[href^="#"]')];
 const navSections = [...new Set(sectionLinks.map((link) => document.getElementById(link.hash.slice(1))).filter(Boolean))];
 
