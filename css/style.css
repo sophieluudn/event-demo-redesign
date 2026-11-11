@@ -583,14 +583,15 @@ select.control {
 .event-status[hidden] { display: none; }
 .navbar__actions .btn[aria-disabled="true"],
 .navbar__actions .btn[aria-disabled="true"]:hover { background: #e8edf3; border-color: #d1d5db; color: #5a6478; cursor: not-allowed; }
-.status-preview-wrap { padding-bottom: 24px; }
-.status-preview { color: var(--color-text-muted); font-size: 14px; }
+.status-preview-wrap { padding-block: 12px; }
+.status-preview { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; color: var(--color-text-muted); font-size: 14px; }
 .status-preview summary { cursor: pointer; width: fit-content; }
-.status-preview label { display: inline-block; margin: 14px 8px 0 0; }
+.status-preview label { display: inline-block; }
 .status-preview select { max-width: 100%; padding: 8px 12px; border: 1px solid var(--color-border-strong); border-radius: var(--radius-sm); background: var(--color-white); color: var(--color-text); font: inherit; }
-.status-preview p { margin: 8px 0 0; }
+.status-preview p { flex-basis: 100%; margin: 0; font-size: 12px; }
 @media (max-width: 767px) {
-  .status-preview select { display: block; margin-top: 8px; width: 100%; }
+  .status-preview select { flex: 1; min-width: 0; }
+  .status-preview label { display: none; }
 }
 .home__main {
   flex: 1;

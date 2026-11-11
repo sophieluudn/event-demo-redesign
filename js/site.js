@@ -22,7 +22,7 @@ if (eventStatus) {
     const open = !ended && !full && !upcoming && now < deadline;
     eventStatus.textContent = '活動已結束，感謝您的熱情參與！';
     eventStatus.hidden = !ended;
-    action.textContent = ended ? '報名截止' : upcoming ? '尚未開始'
+    action.textContent = ended ? '報名截止' : upcoming ? '尚未開放'
       : now >= deadline ? '報名截止' : full ? '報名額滿' : '立即報名';
     if (ended) action.setAttribute('aria-describedby', 'event-status-message');
     else action.removeAttribute('aria-describedby');
@@ -36,6 +36,11 @@ if (eventStatus) {
     if (action.getAttribute('aria-disabled') === 'true') event.preventDefault();
   });
   select.addEventListener('change', render);
+  document.querySelector('[data-next-scenario]').addEventListener('click', () => {
+    select.selectedIndex = select.selectedIndex >= select.options.length - 1
+      ? 1 : select.selectedIndex + 1;
+    render();
+  });
   window.setInterval(render, 30000);
   render();
 }
