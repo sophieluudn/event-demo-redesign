@@ -579,7 +579,7 @@ select.control {
 .hero h1 { margin-bottom: var(--space-2); }
 /* ---------- 首頁 ---------- */
 .home__title { padding-block: var(--space-8); text-align: center; }
-.event-status { margin: 20px 0 0; padding: 14px 20px; border-radius: var(--radius-md); background: #eef3f8; color: #4b5d75; font-size: 18px; font-weight: 600; }
+.event-status { margin: 12px 0 0; color: #4b5d75; font-size: 18px; font-weight: 400; }
 .event-status[hidden] { display: none; }
 .navbar__actions .btn[aria-disabled="true"],
 .navbar__actions .btn[aria-disabled="true"]:hover { background: #e8edf3; border-color: #d1d5db; color: #5a6478; cursor: not-allowed; }
